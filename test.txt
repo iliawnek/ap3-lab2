@@ -1,0 +1,7 @@
+Hello.
+This is a test file.
+Some "quote" is Ken's words; but things?!
+This is: wow, Test1...
+this;that;and something else.
+
+should could would
