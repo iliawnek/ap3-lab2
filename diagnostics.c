@@ -15,8 +15,26 @@ void diag_set_level(char *prog, int level) {
 void diag_print(int level, char *func, char *diag) {
     // get current time as string
     time_t now = time(NULL);
-    char *now_string = ctime(&now);
-    now_string[strlen(now_string) - 1] = '\0'; // remove newline
+    char *timestamp = ctime(&now);
+    timestamp[strlen(timestamp) - 1] = '\0'; // remove newline
+    char* diaglevelstring;
+    switch (diaglevel) {
+        case 0:
+            diaglevelstring = "ERROR";
+            break;
+        case 1:
+            diaglevelstring = "FUNCTION";
+            break;
+        case 2:
+            diaglevelstring = "APPLICATION";
+            break;
+        case 3:
+            diaglevelstring = "VERBOSE";
+            break;
+        default:
+            diaglevelstring = "ERROR";
+            break;
+    }
 
-    fprintf(stderr, "%s - %s\n", now_string, diag);
+    fprintf(stderr, "\n[%s] %s %s (%s): %s\n", timestamp, diaglevelstring, progname, func, diag);
 }

@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
         else if (strcmp(argv[i], "-diag") == 0) {
             // error if no flag is given to -diag
             if (i == argc - 1) {
-                printf("\nError: No argument given to -diag.\n");
+                diag_print(1, "main", "No arg given to -diag.");
                 return -1;
             }
             is_diag_arg = 1;
@@ -26,6 +26,5 @@ int main(int argc, char* argv[]) {
         printf("%s%s", argv[i], (i < argc - 1) ? " " : "");
     }
     printf("\n");
-    diag_print(1, "lol", "haha");
     return 0;
 }
