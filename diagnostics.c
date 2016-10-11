@@ -1,9 +1,9 @@
 #include "diagnostics.h"
 #include <stdio.h>
+#include <time.h>
+#include <string.h>
 
-// the following static variables, visible to other functions in this
-// file, are initialized here so that diag_print can be used even if
-// no-one invokes diag_set_level
+// defaults
 static char *progname = "unknown-program";
 static int diaglevel = DIAG_ERROR;
 
@@ -13,6 +13,10 @@ void diag_set_level(char *prog, int level) {
 }
 
 void diag_print(int level, char *func, char *diag) {
-// just prints the third argument for now, regardless of level
-    fprintf(stderr, "%s\n", diag);
+    // get current time as string
+    time_t now = time(NULL);
+    char *now_string = ctime(&now);
+    now_string[strlen(now_string) - 1] = '\0'; // remove newline
+
+    fprintf(stderr, "%s - %s\n", now_string, diag);
 }
